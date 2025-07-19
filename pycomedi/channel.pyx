@@ -177,7 +177,7 @@ cdef class DigitalChannel (Channel):
 
         Return an item from `constant.IO_DIRECTION`.
         """
-        cpdef unsigned int dir
+        cdef unsigned int dir
         ret = _comedilib_h.comedi_dio_get_config(
             self._device(), self.subdevice.index, self.index, &dir)
         if ret < 0:
@@ -186,7 +186,7 @@ cdef class DigitalChannel (Channel):
 
     def dio_read(self):
         "Read a single bit"
-        cpdef unsigned int bit
+        cdef unsigned int bit
         ret = _comedilib_h.comedi_dio_read(
             self._device(), self.subdevice.index, self.index, &bit)
         if ret < 0:

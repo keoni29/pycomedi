@@ -142,7 +142,7 @@ def _pso(s, o):
         s = s.value
     if isinstance(o, BitwiseOperator):
         o = o.value
-    return (long(s), long(o))
+    return (int(s), int(o))
 
 
 cdef class BitwiseOperator (object):
@@ -172,12 +172,12 @@ cdef class BitwiseOperator (object):
     def __and__(self, other):
         "Bitwise and acts on `BitwiseOperator.value`."
         s,o = BitwiseOperator._prepare_self_other(self, other)
-        return BitwiseOperator(int(long.__and__(s, o)))
+        return BitwiseOperator(int(int.__and__(s, o)))
 
     def __or__(self, other):
         "Bitwise or acts on `BitwiseOperator.value`."
         s,o = BitwiseOperator._prepare_self_other(self, other)
-        return BitwiseOperator(int(long.__or__(s, o)))
+        return BitwiseOperator(int(int.__or__(s, o)))
 
     def __richcmp__(self, other, op):
         if other is None:
@@ -487,3 +487,4 @@ LOGLEVEL.append(_NamedInt('error', 3, doc=(
             'in the Comedilib library or in the C library, when called by '
             'Comedilib.')))
 LOGLEVEL.append(_NamedInt('debug', 4, doc='Comedilib prints a lot of junk.'))
+
